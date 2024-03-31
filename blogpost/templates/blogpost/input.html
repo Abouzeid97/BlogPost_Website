@@ -1,0 +1,22 @@
+{% extends "blogpost/base.html" %}
+{% load static %}
+{% block title %}
+Your New Post
+{% endblock  %}
+{% block css_files %}
+<link rel="stylesheet" href="{%static "/blogpost/styles.css" %}"/>
+{% endblock  %}
+
+{% block content %}
+<form action="{{ views.get_success_url }}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% for field in form %}
+          <div class="form-control {% if field.errors %}errors{% endif %}">
+            {{field.label_tag }}
+            {{field}}
+            {{field.errors}}
+          </div>
+        {% endfor %}    
+    <button type="submit">Send</button>
+  </form>
+{% endblock %}

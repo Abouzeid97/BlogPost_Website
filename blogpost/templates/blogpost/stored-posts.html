@@ -1,0 +1,22 @@
+{% extends "blogpost/base.html" %}
+{% load static %}
+{% block title %}
+Read Later Posts
+{% endblock  %}
+{% block css_files %}
+<link rel="stylesheet" href="{%static "/blogpost/stored-posts.css" %}"/>
+{% endblock  %}
+
+
+{% block content %}
+    <section id="stored-posts">
+        {% if not has_posts %}
+        <p>You did not save any posts yet !</p>
+        {% endif %}
+        <ul>
+            {% for post in posts %}
+                <li><a href="{% url "post-detail" post.slug %}">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

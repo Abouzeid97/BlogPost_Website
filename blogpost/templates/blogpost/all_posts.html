@@ -1,0 +1,32 @@
+{% extends "blogpost/base.html" %}
+{% load static  %}
+{% block title %}
+    All Posts
+{% endblock  %}
+{% block css_files %}
+<link rel="stylesheet" href="{%static "/blogpost/all_posts.css" %}"/>
+<link rel="stylesheet" href="{% static "blogpost/post.css" %}" />
+{% endblock  %}
+{% block content %}
+    <section id="all-posts">
+        <h2>Me and My Friends Posts</h2>
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <article class="post">
+                            <a href="{{ post.get_absolute_url }}">
+                                <img src="{{post.image.url}}"/>
+                                <h3>{{ post.title }}</h3>
+                                <div class="post__content">
+                                    <p>{{post.excerpt}}</p>
+                                    <p> {{post.time_posted}} </p>
+                                </div>
+                            </a>
+                        </article>
+                    </li>        
+                {% endfor %}
+            </ul>
+    </section>
+    <hr>
+    <p>Total number of posts: {{ Num_of_Posts }} </p>
+{% endblock  %}

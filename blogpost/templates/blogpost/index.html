@@ -1,0 +1,47 @@
+{% extends "blogpost/base.html" %}
+{% load static  %}
+{% block title %}
+    My BlogPost
+{% endblock  %}
+{% block css_files %}
+ <link rel="stylesheet" href="{%static "/blogpost/index.css" %}"/>
+ <link rel="stylesheet" href="{% static "blogpost/post.css" %}" />
+{% endblock  %}
+{% block content %}
+    <section id="welcome">
+        <header>
+            <img src="{% static "/blogpost/media/sherif.jpg" %}"/>
+            <h2>Sherif's Blogpost<h2>
+        </header>
+        <p>Hi, this is Sherif Abouzeid and this is my very first website using python and Django framework<p>
+    </section>
+    <section id="latest-posts">
+        <h2> The lastest Posts </h2>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <article class="post">
+                        <a href="{{ post.get_absolute_url }}">
+                            <img src="{{post.image.url}}"/>
+                            <div class="post__content">
+                                <h3>{{ post.title }}</h3>
+                                <p>{{post.excerpt}}</p>
+                                <p>{{post.time_posted}}</p>
+                            </div>
+                        </a>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <hr>
+    <section>
+        <button onclick="location.href='your_post'" type="button">Type a post</button>
+    </section>
+    <section id="about">
+        <h2>What I Do</h2>
+        <p>well i've made a lot i have more than a project on my GitHub Account</p>
+        <p>My goal is to keep programming in every field of programming, Web development is just a step to reach my big Goal</p>
+    </section>
+    
+{% endblock  %}
